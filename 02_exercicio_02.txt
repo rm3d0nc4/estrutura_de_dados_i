@@ -1,0 +1,36 @@
+Exercício de Estrutura de Dados (22/08/2022)
+
+1)
+    a) Os itens se encontram ordenados
+    b) Os itens não estão organizados linearmente
+    c) Os itens não apresentam uma hierarquia
+
+2)
+    a) Grafo
+    b) Árvore
+    c) Lista
+    d) Árvore
+
+3) A palavra 'diferentes' é impressa porque a estrutura de decisão compara os endereços
+   de memória, e não os valores armazenados nas variáveis.
+
+4) 1 - São inicializadas duas variáveis 'x' e 'y' do tipo Struct com um único
+    campo (valor),a primeira preenchida com 'um' e a segunda preenchida com 'dois';
+   2 - o campo valor do Struct 'x' é impresso ('um');
+   3 -  a variável 'x' tem o valor reatribuído como Struct armazenado na variável 'y';
+   2 - o campo valor do Struct 'x' é impresso ('dois');
+
+5) 1 - São inicializadas duas variáveis do tipo int (a = 3 e b = 5);
+   2 - São atribuido aos ponteiro 'p' e 'q', os endereços de memória das
+   variáveis 'a' e 'b', respectivamente;
+   3 - O valor armazenado no endereço de memória do ponteiro 'p', passa
+   a ser '8'; 
+   4 - O valor armazenado no endereço de memória do ponteiro 'q', 
+   passa a ser '3'; 
+   5 - O valor armazenado no endereço de memória do ponteiro 'p', 
+   passaa ser '5';
+   6 - São impressos os valores 5 e 3, respectivamente ('5,3');
+
+6) a - Dinâmica sequencial
+   b - Estática encadeada
+   c- Dinâmica encadeada
