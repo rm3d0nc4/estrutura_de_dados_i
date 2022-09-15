@@ -1,0 +1,10 @@
+Saida:
+"""
+2
+1
+pilha vazia!
+"""
+
+Explicação: São impressos os valores 1 e 2, respectivamente, devido as duas primeiras
+chamadas da função 'desempilha', que devolve o elemento retirado da pilha. Em seguida,
+é impressa a mensagem 'pilha vazia!', pois não há mais itens a serem desempilhados.

@@ -1,0 +1,19 @@
+Saida:
+"""
+0.5
+1
+2
+4
+8
+"""
+
+Explicação: como o primeiro elemento a ser inserido na pilha é o número 8, o
+primeiro laço de repetição irá empilhar o resultado da divisão do elemento no topo 
+(inicialmente = 8) por 2, até que o elemento presente no topo seja menor que zero.
+(o elemento presente no topo ao fim da execução do laço sera 0.5 (1/2)). Por fim,
+todos os elementos presentes na pilha serão impressos.
+
+
+
+91 25 69 40 63 59 52 90 17 6
+89 38 64 92 18

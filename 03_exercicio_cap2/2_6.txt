@@ -1,0 +1,30 @@
+
+Resposta:   
+            O que está sendo empilhado, não são as palavras em si, mas sim o ponteiro da variável 's'.
+            O laço de repetição 'for' está apenas atualizando o conteúdo da variável 's', e em seguida, o
+            endereço de memória dessa variável é empilhado. Com a chama da função desempilha(), os
+            endereços são desempilhados e todos eles apotam para a variável 's', cujo o valor atual
+            será 'tres';
+
+
+
+#include <stdio.h>
+#include "./pilhaS.h" // Pilha de char*
+int main() {
+    PilhaS pilha = criarPilhaS(5);
+
+    char s[11];
+
+    for (int i = 0; i < 3; i++) {
+        printf("? ");
+        gets(s);
+        pushS(s, pilha);
+
+        showPilhaS(pilha);
+    }
+
+    while (!ehPilhaSVazia(pilha)) {
+        puts(popS(pilha));
+    }
+    
+}
