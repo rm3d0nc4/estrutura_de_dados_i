@@ -42,7 +42,7 @@ class Pilha {
                 
                 return itemT;
             }
-            
+            throw exception;
         }
 
         void fullUnstack() {
