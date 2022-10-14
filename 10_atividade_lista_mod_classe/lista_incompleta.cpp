@@ -133,6 +133,7 @@ class Lista {
 			}
 
 			atual = elemento->prox;
+			fim = elemento;
 			elemento->prox = NULL;
 
 			while (atual != NULL) {
