@@ -64,43 +64,37 @@ class Lista {
 			}
 		}
 
-		// auxiliar no metodo remove, vai 
-		//retornar o endereco do anterior
-		No* busca(int matricula) {
-			No* elemento = inicio;
-
-			if(matricula != inicio->matricula) {
-				while (elemento->prox != NULL && elemento->prox->matricula != matricula) {
-					elemento = elemento->prox;
-				}
-
-				if(elemento->prox->matricula != matricula) {
-					cout << "ERRO: Matricula nao encontrada! -> " << matricula << " -> " << elemento->matricula << endl; 
-					system("pause"); 
-					// abort();
+		No* busca(int matricula) { 
+			No* noAtual = inicio;
+			No* procurado = NULL;
+			while (noAtual != NULL){
+				if(noAtual->matricula == matricula) {
+					procurado = noAtual;
+					break;
 				} else {
-					// cout << "Nome: " << elemento->prox->nome << " - Matricula: " << elemento->prox->matricula << endl;
+					noAtual = noAtual->prox;
 				}
 			}
-			return elemento;
+
+			free(noAtual);
+			return procurado;
 		}
 		
-		int remove(int matricula) { // Com algum problema
+		void remove(int matricula) { // Com algum problema
 			No* elemento = busca(matricula);
+			No* elementoAtual = inicio;
 
-			if(elemento->matricula == inicio->matricula && matricula == inicio->matricula) {
+			if(elemento == inicio) {
 				inicio = inicio->prox;
-			} else if (elemento->prox->matricula == fim->matricula) {
-				fim = elemento;
-				elemento->prox = NULL;
 			} else {
-				// mostra(); OK
-				elemento->prox = elemento->prox->prox; // exatamente aqui
-				// mostra(); OK
-			}	
-			
+				while (elementoAtual->prox != elemento) {
+					elementoAtual = elementoAtual->prox;
+				}
+				
+				if(elemento == fim) fim = elementoAtual;
+				else elementoAtual->prox = elemento->prox;
+			}
 			free(elemento);
-			return matricula;
 		}
 		
 		void removeTodos() {
@@ -109,7 +103,7 @@ class Lista {
 
 			while (atual != NULL) {
 					proximo = atual->prox;
-					cout<<"Apaga:"<<atual->nome << endl;;
+					cout<<"Apaga: "<<atual->nome << endl;;
 					free(atual);
 					atual=proximo;						
 			}
@@ -117,50 +111,35 @@ class Lista {
 		}
 		
 		// criar uma nova lista que seja o inverso da primeira
-		Lista* crialistainversa() {
+		Lista* criaListaInversa() {
 			Lista* novaLista = new Lista;
 			No* elementoAtual = inicio;
 
-			while (elementoAtual->prox != NULL) {
-				novaLista->addToFinal(elementoAtual->matricula, elementoAtual->nome);
+			while (elementoAtual != NULL) {
+				novaLista->addToInicio(elementoAtual->matricula, elementoAtual->nome);
 				elementoAtual = elementoAtual->prox;
 			}
-			free(elementoAtual);
-
 			return novaLista;
 		}
 		
 		//inverter a propria lista
-		void listainvertida() {
-			int matriculaInicio = inicio->matricula;
-			int matriculaFim = fim->matricula;
-			No* elementoARemover = busca(fim->matricula);
-			No* elementoAnterior = busca(elementoARemover->matricula);
+		void listaInvertida() {
+			No* elemento = inicio;
+			No* atual = elemento->prox;
 
-			while (elementoARemover->matricula != matriculaInicio) {
-				addToFinal(elementoARemover->matricula, elementoARemover->nome);
-				// remove(elementoARemover->matricula);
-				
-				// cout << "R: " << elementoARemover->matricula << endl;
-				// cout << "A: " << elementoAnterior->matricula << endl;
-
-				elementoARemover = elementoAnterior;
-				elementoAnterior = busca(elementoARemover->matricula);
-				
-				// cout << elementoARemover->matricula << matriculaInicio << endl;
-			};
-
-			addToFinal(inicio->matricula, inicio->nome);
-			remove(inicio->matricula);
-			while (inicio->matricula != matriculaFim) {
-				inicio = inicio->prox;
+			while (atual != NULL){
+				addToInicio(atual->matricula, atual->nome);
+				atual = atual->prox;
 			}
-			
 
-			free(elementoARemover);
-			free(elementoAnterior);
-			free(&matriculaInicio);
-			free(&matriculaFim);
+			atual = elemento->prox;
+			elemento->prox = NULL;
+
+			while (atual != NULL) {
+				elemento = atual;
+				atual = atual->prox;
+				free(elemento);
+			}
 		}
 };
 
@@ -171,9 +150,12 @@ main() {
 	lista->addToFinal(3,"Fabiola");
 	lista->addToInicio(5,"Joana Oliveira");
 	lista->addToInicio(6,"Cristiano Oliveira");	
-	lista->mostra();
-	lista->listainvertida();
-	// lista->remove(1);
-	lista->mostra();
-	// cout << "Certo!" << endl;
+	lista->mostra(); // Lista
+	lista->listaInvertida();
+	lista->mostra(); // Lista Invertida
+	lista->remove(1);
+	lista->mostra(); //Lista sem o elemento removido
+
+	Lista* lista2 = lista->criaListaInversa();
+	lista2->mostra(); // Nova lista invertida
 }
